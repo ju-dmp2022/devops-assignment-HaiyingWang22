@@ -22,15 +22,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - name: Get content from git repository
+        uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: judevops.azurecr.io
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Build and push Docker image
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          docker build -t judevops.azurecr.io/haiying_wang-calculator:latest
+          docker push judevops.azurecr.io/haiying_wang-calculator:latest
