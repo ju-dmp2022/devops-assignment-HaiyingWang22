@@ -34,5 +34,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t judevops.azurecr.io/haiying_wang-calculator:latest
+          docker build -t judevops.azurecr.io/haiying_wang-calculator:latest .
           docker push judevops.azurecr.io/haiying_wang-calculator:latest
