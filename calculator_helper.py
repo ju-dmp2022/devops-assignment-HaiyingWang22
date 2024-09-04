@@ -33,25 +33,28 @@ class CalculatorHelper():
             return f"User(username={self.username}, password={self.password})"
 
     def add(self, a, b):
+        result = a + b
         self.logger.debug(f"Adding {a} and {b}", extra=self.log_properties)
-        # self.logger.debug("test")
-        self.logger.info(f"Result of {a + b}", extra=self.log_properties)
-        return a + b
+        self.logger.info(f"Result of {result}", extra=self.log_properties)
+        return result
 
     def subtract(self, a, b):
+        result = a - b
         self.logger.debug(f"subtract {a} and {b}", extra=self.log_properties)
-        self.logger.info(f"Result of {a - b}", extra=self.log_properties)
-        return a - b
+        self.logger.info(f"Result of {result}", extra=self.log_properties)
+        return result
 
     def multiply(self, a, b):
+        result = a * b
         self.logger.debug(f"multiply {a} and {b}", extra=self.log_properties)
-        self.logger.info(f"Result of {a * b}", extra=self.log_properties)
-        return a * b
+        self.logger.info(f"Result of {result}", extra=self.log_properties)
+        return result
 
     def divide(self, a, b):
+        result = a / b
         self.logger.debug(f"divide {a} and {b}", extra=self.log_properties)
-        self.logger.info(f"Result of {a / b}", extra=self.log_properties)
-        return a / b
+        self.logger.info(f"Result of {result}", extra=self.log_properties)
+        return result
 
     def register_user(self, username, password):
         self.logger.debug(f"Try to registing user: {username}", extra=self.log_properties)
