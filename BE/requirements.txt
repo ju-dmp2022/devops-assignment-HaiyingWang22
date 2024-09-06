@@ -1,0 +1,11 @@
+fastapi
+pydantic
+uvicorn
+numpy
+argparse
+opencensus-ext-azure
+pytest
+requests
+httpx
+attrs==24.2.0
+python-dateutil
