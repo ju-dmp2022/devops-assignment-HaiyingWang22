@@ -54,7 +54,7 @@ class TestCalculatorAPI(BaseTest):
         if isinstance(response, ErrorResponse):
             assert response.detail == "User already exists."
         else:
-            assert isinstance(response, ResultResponse)
+            assert isinstance(response, UserResponse)
             assert response.username == "abc"
 
     #GET test 
