@@ -40,8 +40,9 @@ jobs:
           python BE/calculator.py --rest &  
         timeout-minutes: 1
           
-      - name: Run tests with pytest
+      - name: Setting python path and run tests with pytest
         run: |
+          PYTHONPATH=$PYTHONPATH:$(pwd)/BE
           pytest
           
       - name: Login to Azure Container Registry
