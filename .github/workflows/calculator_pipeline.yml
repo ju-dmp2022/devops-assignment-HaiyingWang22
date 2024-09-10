@@ -42,16 +42,24 @@ jobs:
           
       - name: Setting python path and run tests with pytest
         run: |
-          PYTHONPATH=$PYTHONPATH:$(pwd)/BE pytest
+          PYTHONPATH=$PYTHONPATH:$(pwd)/BE pytest --junit-xml=report.xml
+          
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure() # always run even if the previous step fails
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'     
           
       - name: Login to Azure Container Registry
         uses: azure/docker-login@v1
+        if: success()
         with:
           login-server: judevops.azurecr.io
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
 
       - name: Build and push Docker image
+        if: success()
         run: |
           docker build -t judevops.azurecr.io/haiying_wang-calculator:latest ./BE
           docker push judevops.azurecr.io/haiying_wang-calculator:latest
