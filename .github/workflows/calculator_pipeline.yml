@@ -38,7 +38,7 @@ jobs:
       - name: Start REST API
         run: |
           python BE/calculator.py --rest &  
-          timeout-minutes: 1
+        timeout-minutes: 1
           
       - name: Run tests with pytest
         run: |
