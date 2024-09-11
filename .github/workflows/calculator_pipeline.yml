@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PYTHONPATH: /BE 
+      PYTHONPATH: ${{ github.workspace }}/BE
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
