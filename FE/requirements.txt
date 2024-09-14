@@ -1,0 +1,4 @@
+munch
+selenium
+webdriver-manager
+assertpy

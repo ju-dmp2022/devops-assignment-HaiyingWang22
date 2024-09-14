@@ -1,4 +1,5 @@
 from BE.calculator_helper import CalculatorHelper
+from assertpy import assert_that
 import pytest
 
 class BaseTest():
@@ -16,7 +17,7 @@ class BaseTest():
         # Action
         value = method(a, b)
         # Assert
-        assert value == expected
+        assert_that(value).is_equal_to(expected)
 
 class TestCalculator(BaseTest):
     # test add
