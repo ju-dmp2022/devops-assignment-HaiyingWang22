@@ -15,14 +15,19 @@ class TestWeb(WebBase):
     def test_assignment(self):
         userName='testUser'
         password='test12345'
+        loginPage=LoginPage(self.driver)
         registerPage=RegisterPage(self.driver)
         calculator_page = CalculatorPage(self.driver)
 
         # Registe new user and login
-        self.driver.get("http://localhost:8080/register.html") 
+        # self.driver.get("http://localhost:8080/register.html") 
+        self.driver.get("http://host.docker.internal:8080/register.html") 
+        
+        loginPage.elements.register_btn.click()   
         registerPage.register(userName,password) 
         if registerPage.element.message.text == 'User already exists!': 
-            self.driver.get("http://localhost:8080/login.html")
+            # self.driver.get("http://localhost:8080/login.html")
+            self.driver.get("http://host.docker.internal:8080/login.html") 
             LoginPage(self.driver).login(userName,password)
             assert calculator_page.elements.username.text == userName 
         else:
