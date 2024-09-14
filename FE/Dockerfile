@@ -19,8 +19,8 @@ ENV WEB_SERVER_ADDRESS=${WEB_SERVER_ADDRESS}
 ENV NGINX_PORT=${NGINX_PORT}
 
 # Create a config.js file with the remote server address
-#RUN echo "window.config = { remoteServerAddress: 'http://host.docker.internal:5001', webServerAddress: 'http://host.docker.internal:8080' };" > /usr/share/nginx/html/config.js
-RUN echo "window.config = { remoteServerAddress: 'http://localhost:5001', webServerAddress: 'http://localhost:8080' };" > /usr/share/nginx/html/config.js
+RUN echo "window.config = { remoteServerAddress: 'http://host.docker.internal:5001', webServerAddress: 'http://host.docker.internal:8080' };" > /usr/share/nginx/html/config.js
+# RUN echo "window.config = { remoteServerAddress: 'http://localhost:5001', webServerAddress: 'http://localhost:8080' };" > /usr/share/nginx/html/config.js
 
 # Replace the placeholders in the nginx configuration template with the actual environment variable values
 RUN envsubst '${REMOTE_SERVER_ADDRESS} ${NGINX_PORT}' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
