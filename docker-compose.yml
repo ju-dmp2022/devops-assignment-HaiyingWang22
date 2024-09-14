@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     container_name: api-calculator
     ports:
-      - "5002:5002"
+      - "5001:5001"
     networks:
       - calculator
 
@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     container_name: web-calculator
     environment:
-      - REMOTE_SERVER_ADDRESS=http://api-calculator:5002
+      - REMOTE_SERVER_ADDRESS=http://api-calculator:5001
       - NGINX_PORT=8080
     ports:
       - "8080:8080"
