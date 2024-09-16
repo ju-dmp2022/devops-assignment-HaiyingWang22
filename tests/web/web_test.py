@@ -49,7 +49,7 @@ class TestWeb(WebBase):
         calculator_page.calculator('add', 1, 2)  
         calculator_page.calculator('subtract', 3, 2)  
         calculator_page.calculator('multiply', 2, 2)  
-        # calculator_page.calculator('divide', 4, 0)  
+        calculator_page.calculator('divide', 4, 0)  
         
         # Check history 
         calculator_page.elements.history_btn.click()
