@@ -60,7 +60,7 @@ jobs:
 
       - name: Setting python path and run tests with pytest
         run: |
-          python -m pytest --junit-xml=report.xml
+          python -m pytest -s --junit-xml=report.xml
         env:
           SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub  
           
