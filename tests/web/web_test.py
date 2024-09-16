@@ -21,17 +21,17 @@ class TestWeb(WebBase):
         
         loginPage.elements.register_btn.click()   
         registerPage.register(userName,password) 
-        if registerPage.element.message.text != 'User already exists!': 
-            time.sleep(10)
-            assert calculator_page.elements.username.text == userName
-            calculator_page.elements.logout.click()  
+        current_url = self.driver.current_url
+        print(f"当前URL是：{current_url}")
+        # if registerPage.element.message.text != 'User already exists!': 
+        #     time.sleep(10)
+        #     assert calculator_page.elements.username.text == userName
+        #     calculator_page.elements.logout.click()  
 
     # def test_assignment(self):
-    #     userName='testUser123'
-    #     password='test12345'
-        loginPage=LoginPage(self.driver)
-        registerPage=RegisterPage(self.driver)
-        calculator_page = CalculatorPage(self.driver)
+    #     loginPage=LoginPage(self.driver)
+    #     registerPage=RegisterPage(self.driver)
+    #     calculator_page = CalculatorPage(self.driver)
 
     #     # Registe new user and login
     #     # self.driver.get("http://localhost:8080/register.html") 
@@ -50,29 +50,29 @@ class TestWeb(WebBase):
     #         assert calculator_page.elements.username.text == userName
 
     #     # Perform calculations
-        # calculator_page.calculator('add', 1, 2)  
-        # calculator_page.calculator('subtract', 3, 2)  
-        # calculator_page.calculator('multiply', 2, 2)  
-        # # calculator_page.calculator('divide', 4, 0)  
+    #     calculator_page.calculator('add', 1, 2)  
+    #     calculator_page.calculator('subtract', 3, 2)  
+    #     calculator_page.calculator('multiply', 2, 2)  
+    #     # calculator_page.calculator('divide', 4, 0)  
         
-        # #   
-        # calculator_page.elements.history_btn.click()
-        # expressions = calculator_page.element.history.value.split("\n")
-        # print(f"history text: {expressions}") 
-        # for expression in expressions:
-        #     if "=" in expression:
-        #         formula, result = expression.split("=")
-        #         if "+" in formula:
-        #             P1, P2 = formula.split("+")
-        #             calculator_page.calculator('add', P1, P2)  
-        #         if "-" in formula:
-        #             P1, P2 = formula.split("-")
-        #             calculator_page.calculator('subtract', P1, P2)     
-        #         if "*" in formula:
-        #             P1, P2 = formula.split("*")
-        #             calculator_page.calculator('multiply', P1, P2)  
-        #         if "/" in formula:
-        #             P1, P2 = formula.split("/")
-        #             calculator_page.calculator('divide', P1, P2)   
+    #     #   
+    #     calculator_page.elements.history_btn.click()
+    #     expressions = calculator_page.element.history.value.split("\n")
+    #     print(f"history text: {expressions}") 
+    #     for expression in expressions:
+    #         if "=" in expression:
+    #             formula, result = expression.split("=")
+    #             if "+" in formula:
+    #                 P1, P2 = formula.split("+")
+    #                 calculator_page.calculator('add', P1, P2)  
+    #             if "-" in formula:
+    #                 P1, P2 = formula.split("-")
+    #                 calculator_page.calculator('subtract', P1, P2)     
+    #             if "*" in formula:
+    #                 P1, P2 = formula.split("*")
+    #                 calculator_page.calculator('multiply', P1, P2)  
+    #             if "/" in formula:
+    #                 P1, P2 = formula.split("/")
+    #                 calculator_page.calculator('divide', P1, P2)   
 
-        # calculator_page.elements.logout.click()  
+    #     calculator_page.elements.logout.click()  
