@@ -31,8 +31,8 @@ class TestWeb(WebBase):
             assert self.calculator_page.elements.username.text == self.userName
             self.calculator_page.elements.logout.click()  
 
-    def login_the_user_and_perform_calculations(self): 
-        LoginPage(self.driver).login(self.userName,self.password)
+        # login the user 
+        self.loginPage.login(self.userName,self.password)
         assert self.calculator_page.elements.username.text == self.userName
 
         # Perform calculations
@@ -41,7 +41,7 @@ class TestWeb(WebBase):
         self.calculator_page.calculator('multiply', 2, 2)  
         self.calculator_page.calculator('divide', 4, 0)  
         
-    def check_history(self): 
+        # Check history 
         self.calculator_page.elements.history_btn.click()
         expressions = self.calculator_page.element.history.value.split("\n")
         print(f"history text: {expressions}") 
