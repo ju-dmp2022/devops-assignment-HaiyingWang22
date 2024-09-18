@@ -29,7 +29,7 @@ class TestWeb(WebBase):
         print(f"current URL is:{current_url}")
         if current_url=='http://host.docker.internal:8080/index.html':
             # use retry method to deal with delayed loading of elements
-            assert_that(self.calculator_page.get_username()).is_after_equal_to(self.userName)
+            assert_that(self.calculator_page.get_username()).is_equal_to(self.userName)
             self.calculator_page.elements.logout.click()  
         else:
             print(f"user already exist") 
