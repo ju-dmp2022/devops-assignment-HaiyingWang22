@@ -23,3 +23,5 @@ class RegisterPage(PageBase):
         self.element.password2.set(password)
         self.element.register_btn.click()
 
+        
+

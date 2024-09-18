@@ -1,6 +1,9 @@
 from tests.web.pages.page_base import PageBase
 from tests.web.helpers.element import Element
 from munch import munchify
+from retry import retry
+from assertpy import assert_that
+
 
 
 class CalculatorPage(PageBase):
@@ -56,3 +59,9 @@ class CalculatorPage(PageBase):
 
         print(f"Screen text: {self.element.screen.value}, Expected: {expected}")    
         assert self.element.screen.value == str(expected) 
+
+    @retry(tries=15, delay=1)
+    def get_username(self):
+        username = self.elements.username.text  
+        assert_that(username).is_not_empty()
+        return username  

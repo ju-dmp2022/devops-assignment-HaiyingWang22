@@ -18,8 +18,8 @@ class TestWeb(WebBase):
 
     def test_login_admin(self):
         LoginPage(self.driver).login('admin','test1234')
-        assert CalculatorPage(self.driver).elements.username.text == 'admin'
-        CalculatorPage(self.driver).elements.logout.click()   
+        assert self.calculator_page.elements.username.text == 'admin'
+        self.calculator_page.elements.logout.click()   
 
     # 2.1 Register a new user
     def test_register_newuser(self):
@@ -69,8 +69,4 @@ class TestWeb(WebBase):
 
         # self.calculator_page.elements.logout.click()  
 
-    @retry(tries=15, delay=1)
-    def get_username(self):
-        username = self.elements.username.text  
-        assert_that(username).is_not_empty()
-        return username  
+    
