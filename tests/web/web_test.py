@@ -7,10 +7,13 @@ from tests.web.pages.calculator_page import CalculatorPage
 import time
 
 class TestWeb(WebBase):
-    def setup_method(self, method):
-        super().setup_method()
+    def setup(self):
+        # super().setup_method()
         self.userName = 'testUser'
         self.password = 'test12345'
+        self.loginPage=LoginPage(self.driver)
+        self.registerPage=RegisterPage(self.driver)
+        self.calculator_page = CalculatorPage(self.driver)
 
     def test_login(self):
         LoginPage(self.driver).login('admin','test1234')
@@ -20,9 +23,7 @@ class TestWeb(WebBase):
     # def test_register_newuser(self):
     #     # userName='testUser'
     #     # password='test12345'
-    #     loginPage=LoginPage(self.driver)
-    #     registerPage=RegisterPage(self.driver)
-    #     calculator_page = CalculatorPage(self.driver)
+        
         
     #     # register new user
     #     loginPage.elements.register_btn.click()   
