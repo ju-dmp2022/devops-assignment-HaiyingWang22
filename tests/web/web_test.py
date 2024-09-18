@@ -7,43 +7,38 @@ from tests.web.pages.calculator_page import CalculatorPage
 import time
 
 class TestWeb(WebBase):
+    def setup_method(self, method):
+        # This will be called before each test method runs
+        self.userName = 'testUser'
+        self.password = 'test12345'
+
     def test_login(self):
         LoginPage(self.driver).login('admin','test1234')
         assert CalculatorPage(self.driver).elements.username.text == 'admin'
         CalculatorPage(self.driver).elements.logout.click()   
 
     def test_register_newuser(self):
-        userName='testUser'
-        password='test12345'
+        # userName='testUser'
+        # password='test12345'
         loginPage=LoginPage(self.driver)
         registerPage=RegisterPage(self.driver)
         calculator_page = CalculatorPage(self.driver)
         
         # register new user
         loginPage.elements.register_btn.click()   
-        registerPage.register(userName,password) 
+        registerPage.register(self.userName,self.password) 
         current_url = self.driver.current_url
         print(f"current URL is:{current_url}")
         if current_url=='http://host.docker.internal:8080/index.html':
             time.sleep(10)
-            assert calculator_page.elements.username.text == userName
+            assert calculator_page.elements.username.text == self.userName
             calculator_page.elements.logout.click()  
 
         # login the user 
-        LoginPage(self.driver).login(userName,password)
-        assert calculator_page.elements.username.text == userName
+        LoginPage(self.driver).login(self.userName,self.password)
+        assert calculator_page.elements.username.text == self.userName
 
         
-    #     loginPage.elements.register_btn.click()   
-    #     registerPage.register(userName,password) 
-    #     if registerPage.element.message.text == 'User already exists!': 
-    #         # self.driver.get("http://localhost:8080/login.html")
-    #         self.driver.get("http://host.docker.internal:8080/login.html") 
-    #         LoginPage(self.driver).login(userName,password)
-    #         assert calculator_page.elements.username.text == userName 
-    #     else:
-    #         time.sleep(5)
-    #         assert calculator_page.elements.username.text == userName
 
         # Perform calculations
         calculator_page.calculator('add', 1, 2)  
