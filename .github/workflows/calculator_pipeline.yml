@@ -26,6 +26,7 @@ jobs:
 
     env:
       PYTHONPATH: ${{ github.workspace }}/BE
+      SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub  
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -48,21 +49,17 @@ jobs:
           docker run --name selenium -d --add-host host.docker.internal:host-gateway -p 4444:4444 --shm-size="2g" selenium/standalone-chrome:4.2.1-20220531
         timeout-minutes: 1     
            
-      #- name: Start REST API
-        #run: |
-          #python BE/calculator.py --rest &  
-        #timeout-minutes: 1
         
       - name: Docker Compose front-back service
         run: |  
           docker compose -p webcalculator up -d 
         timeout-minutes: 1
 
-      - name: Setting python path and run tests with pytest
+      - name: Run tests with pytest
         run: |
           python -m pytest -s --junit-xml=report.xml
-        env:
-          SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub  
+        #env:
+          
           
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
