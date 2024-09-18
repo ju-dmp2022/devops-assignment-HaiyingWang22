@@ -44,12 +44,17 @@ class TestWeb(WebBase):
         
 
     # 2.2 Verify the calculation methods
-    @pytest.mark.parametrize("method,P1,P2, expected", [( "add","1","1", "2"), ("subtract","2","1", "1"), ("multiply","2","3", "6"), ("divide","4","0", "undefined")])
+    @pytest.mark.parametrize("method,P1,P2, expected", [
+        ("add","1","1", "2"), 
+        ("subtract","2","1", "1"), 
+        ("multiply","2","3", "6"), 
+        ("divide","4","0", "undefined")
+    ])
     def test_register_newuser(self,method,P1,P2, expected):
         LoginPage(self.driver).login(self.adminName,self.adminPassword)
         assert self.calculator_page.elements.username.text == self.adminName
         self.calculator_page.calculator(method,P1,P2, expected)  
-        assert_that(self.calculator_page.calculator(self,method,P1,P2,expected)).is_equal_to(expected)
+        assert_that(self.calculator_page.calculator(method,P1,P2,expected)).is_equal_to(expected)
         self.calculator_page.elements.logout.click()  
 
 
