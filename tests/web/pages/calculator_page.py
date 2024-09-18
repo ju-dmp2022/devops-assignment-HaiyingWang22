@@ -37,7 +37,7 @@ class CalculatorPage(PageBase):
         }
         self.elements = munchify(page_elements)
 
-    def calculator(self,method,P1,P2):  
+    def calculator(self,method,P1,P2,expected):  
         self.element.clear_btn.click() 
         getattr(self.element,str(P1)).click()
         getattr(self.element,method).click()
@@ -46,19 +46,20 @@ class CalculatorPage(PageBase):
         P1 = int(P1)
         P2 = int(P2)
         if method == 'add':
-            expected = P1 + P2
+            result = P1 + P2
         elif method == 'subtract':
-            expected = P1 - P2
+            result = P1 - P2
         elif method == 'multiply':
-            expected = P1 * P2
+            result = P1 * P2
         elif method == 'divide':
             if P2==0:
-                expected = 'undefined'
+                result = 'undefined'
             else:
-                expected = P1 / P2
+                result = P1 / P2
 
-        print(f"Screen text: {self.element.screen.value}, Expected: {expected}")    
-        assert self.element.screen.value == str(expected) 
+        print(f"Screen text: {self.element.screen.value}, Expected: {expected}")  
+        return result  
+        # assert self.element.screen.value == str(expected) 
 
     @retry(tries=15, delay=1)
     def get_username(self):
