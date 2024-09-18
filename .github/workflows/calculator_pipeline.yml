@@ -26,6 +26,7 @@ jobs:
 
     env:
       PYTHONPATH: ${{ github.workspace }}/BE
+      SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub  
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -57,8 +58,8 @@ jobs:
       - name: Run tests with pytest
         run: |
           python -m pytest -s --junit-xml=report.xml
-        env:
-          SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub  
+        #env:
+          
           
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
