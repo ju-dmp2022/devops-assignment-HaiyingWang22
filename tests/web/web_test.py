@@ -8,7 +8,7 @@ import time
 
 class TestWeb(WebBase):
     def setup_method(self, method):
-        # This will be called before each test method runs
+        super().setup_method()
         self.userName = 'testUser'
         self.password = 'test12345'
 
