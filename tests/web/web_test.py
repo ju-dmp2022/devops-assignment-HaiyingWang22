@@ -8,8 +8,8 @@ import random
 from retry import retry
 
 class TestWeb(WebBase):
-    def setup_method(self, method):
-        super().setup_method(method)
+    def setup_method(self):
+        super().setup_method()
         self.userName = f'User{random.randint(1, 9999)}'
         self.password = 'test12345'
         self.loginPage=LoginPage(self.driver)
