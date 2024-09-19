@@ -50,9 +50,8 @@ class TestWeb(WebBase):
         ("multiply",2, 3, 6), 
         ("divide",4, 1, 4),
         ("divide",4, 0, "undefined")
-
     ])
-    def test_register_newuser(self,method,P1,P2, expected):
+    def test_calculation(self,method,P1,P2, expected):
         LoginPage(self.driver).login(self.adminName,self.adminPassword)
         assert self.calculator_page.elements.username.text == self.adminName
         self.calculator_page.calculator(method,P1,P2, expected)  
@@ -60,27 +59,36 @@ class TestWeb(WebBase):
         self.calculator_page.elements.logout.click()  
 
 
-        
-        # Check history 
-        # self.calculator_page.elements.history_btn.click()
-        # expressions = self.calculator_page.element.history.value.split("\n")
-        # print(f"history text: {expressions}") 
-        # for expression in expressions:
-        #     if "=" in expression:
-        #         formula, result = expression.split("=")
-        #         if "+" in formula:
-        #             P1, P2 = formula.split("+")
-        #             self.calculator_page.calculator('add', P1, P2)  
-        #         if "-" in formula:
-        #             P1, P2 = formula.split("-")
-        #             self.calculator_page.calculator('subtract', P1, P2)     
-        #         if "*" in formula:
-        #             P1, P2 = formula.split("*")
-        #             self.calculator_page.calculator('multiply', P1, P2)  
-        #         if "/" in formula:
-        #             P1, P2 = formula.split("/")
-        #             self.calculator_page.calculator('divide', P1, P2)   
+    # 2.3 Verify the history feature
+    @pytest.mark.parametrize("method,P1,P2, expected", [
+        ("add",1, 1, 2), 
+        ("subtract",2, 1, 1), 
+        ("multiply",2, 3, 6), 
+        ("divide",4, 1, 4),
+        ("divide",4, 0, "undefined")
+    ])
+    def test_history(self,method,P1,P2, expected):
+        LoginPage(self.driver).login(self.adminName,self.adminPassword)
+        assert self.calculator_page.elements.username.text == self.adminName
+        self.calculator_page.elements.history_btn.click()
+        expressions = self.calculator_page.element.history.value.split("\n")
+        print(f"history text: {expressions}") 
+        for expression in expressions:
+            if "=" in expression:
+                formula, result = expression.split("=")
+                if "+" in formula:
+                    P1, P2 = formula.split("+")
+                    self.calculator_page.calculator('add', P1, P2)  
+                if "-" in formula:
+                    P1, P2 = formula.split("-")
+                    self.calculator_page.calculator('subtract', P1, P2)     
+                if "*" in formula:
+                    P1, P2 = formula.split("*")
+                    self.calculator_page.calculator('multiply', P1, P2)  
+                if "/" in formula:
+                    P1, P2 = formula.split("/")
+                    self.calculator_page.calculator('divide', P1, P2)   
 
-        # self.calculator_page.elements.logout.click()  
+        self.calculator_page.elements.logout.click()  
 
     
