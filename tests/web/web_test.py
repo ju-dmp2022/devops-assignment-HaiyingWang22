@@ -48,7 +48,7 @@ class TestWeb(WebBase):
         ("add",1, 1, 2), 
         ("subtract",2, 1, 1), 
         ("multiply",2, 3, 6), 
-        ("divide",4, 1, 4)
+        ("divide",4, 1, 4),
         ("divide",4, 0, "undefined")
 
     ])
