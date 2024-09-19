@@ -80,16 +80,16 @@ class TestWeb(WebBase):
                 formula, result = expression.split("=")
                 if "+" in formula:
                     P1, P2 = formula.split("+")
-                    self.calculator_page.calculator('add', P1, P2)  
+                    self.calculator_page.calculator('add', P1, P2, result)  
                 if "-" in formula:
                     P1, P2 = formula.split("-")
-                    self.calculator_page.calculator('subtract', P1, P2)     
+                    self.calculator_page.calculator('subtract', P1, P2, result)     
                 if "*" in formula:
                     P1, P2 = formula.split("*")
-                    self.calculator_page.calculator('multiply', P1, P2)  
+                    self.calculator_page.calculator('multiply', P1, P2, result)  
                 if "/" in formula:
                     P1, P2 = formula.split("/")
-                    self.calculator_page.calculator('divide', P1, P2)   
+                    self.calculator_page.calculator('divide', P1, P2, result)   
 
         self.calculator_page.elements.logout.click()  
 
